@@ -37,7 +37,7 @@ function Homepage() {
     }
 
     const getNasaData = () => {
-        setTimeout(() => {
+        // setTimeout(() => {
             fetch(`https://api.nasa.gov/planetary/apod?api_key=gaff4Pwpu0Qg6woyFty1YhVRxhj4In1ImvOCyFD7&start_date=${startDate}&end_date=${endDate}&thumbs=true`)
                 .then(response => response.json())
                 .then(json => {
@@ -45,23 +45,18 @@ function Homepage() {
                     setApiData([...apiData, ...json]);
                     manipulateDate();
                 })
-        }, 500);
+        // }, 500);
     }
-
-
+   
     useEffect(() => {
         getNasaData()
-        window.onscroll = function() {
-            if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
-             alert("At the bottom!")
-            }
-           }
+       
     }, [])
 
     const displayImage = () => {
         if (apiData?.[apiData?.length - 1]?.media_type == "image") {
             return (<label htmlFor="my-modal-3">
-                {apiData ? <img onClick={(e) => { setImageUrl(apiData[apiData?.length - 1]?.url) }} src={apiData[apiData?.length - 1]?.url} className="max-w-sm rounded-lg shadow-2xl w-full flex justify-center object-cover   lg:w-[400px] h-[400px] " alt="placeholder" />
+                {apiData ? <img onClick={(e) => { setImageUrl(apiData[apiData?.length - 1]?.url) }} src={apiData[apiData?.length - 1]?.url} className="max-w-sm rounded-lg shadow-2xl w-full flex justify-center object-cover cursor-pointer lg:w-[400px] h-[400px] " alt="placeholder" />
                     : <div className='w-[300px] h-[200px] border'></div>}
             </label>)
         } else {
@@ -99,8 +94,8 @@ function Homepage() {
                     next={getNasaData}
                     hasMore={true}
                     loader={<h4>Loading...</h4>}
-                    scrollThreshold="500px"
-                    pullDownToRefreshThreshold
+                    scrollThreshold={800}
+                    
                 >
 
                     <div className='pt-40  grid grid-cols-1 gap-4 items-center '>
