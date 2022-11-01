@@ -37,7 +37,6 @@ function Homepage() {
     }
 
     const getNasaData = () => {
-        console.log("call ho jao bahinchod")
         setTimeout(() => {
             fetch(`https://api.nasa.gov/planetary/apod?api_key=gaff4Pwpu0Qg6woyFty1YhVRxhj4In1ImvOCyFD7&start_date=${startDate}&end_date=${endDate}&thumbs=true`)
                 .then(response => response.json())
